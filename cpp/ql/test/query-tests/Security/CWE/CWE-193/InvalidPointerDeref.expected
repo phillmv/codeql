@@ -77,6 +77,20 @@ edges
 | test.cpp:271:14:271:21 | ... + ... | test.cpp:271:14:271:21 | ... + ... |
 | test.cpp:271:14:271:21 | ... + ... | test.cpp:274:5:274:10 | ... = ... |
 | test.cpp:271:14:271:21 | ... + ... | test.cpp:274:5:274:10 | ... = ... |
+| test.cpp:313:14:313:27 | new[] | test.cpp:314:15:314:23 | ... + ... |
+| test.cpp:313:14:313:27 | new[] | test.cpp:314:15:314:23 | ... + ... |
+| test.cpp:313:14:313:27 | new[] | test.cpp:319:5:319:21 | ... = ... |
+| test.cpp:314:15:314:23 | ... + ... | test.cpp:314:15:314:23 | ... + ... |
+| test.cpp:314:15:314:23 | ... + ... | test.cpp:319:5:319:21 | ... = ... |
+| test.cpp:325:14:325:27 | new[] | test.cpp:326:15:326:23 | ... + ... |
+| test.cpp:325:14:325:27 | new[] | test.cpp:326:15:326:23 | ... + ... |
+| test.cpp:325:14:325:27 | new[] | test.cpp:333:5:333:21 | ... = ... |
+| test.cpp:325:14:325:27 | new[] | test.cpp:341:5:341:21 | ... = ... |
+| test.cpp:325:14:325:27 | new[] | test.cpp:342:5:342:21 | ... = ... |
+| test.cpp:326:15:326:23 | ... + ... | test.cpp:326:15:326:23 | ... + ... |
+| test.cpp:326:15:326:23 | ... + ... | test.cpp:333:5:333:21 | ... = ... |
+| test.cpp:326:15:326:23 | ... + ... | test.cpp:341:5:341:21 | ... = ... |
+| test.cpp:326:15:326:23 | ... + ... | test.cpp:342:5:342:21 | ... = ... |
 | test.cpp:355:14:355:27 | new[] | test.cpp:356:15:356:23 | ... + ... |
 | test.cpp:355:14:355:27 | new[] | test.cpp:356:15:356:23 | ... + ... |
 | test.cpp:355:14:355:27 | new[] | test.cpp:357:24:357:30 | ... + ... |
@@ -243,6 +257,16 @@ nodes
 | test.cpp:271:14:271:21 | ... + ... | semmle.label | ... + ... |
 | test.cpp:271:14:271:21 | ... + ... | semmle.label | ... + ... |
 | test.cpp:274:5:274:10 | ... = ... | semmle.label | ... = ... |
+| test.cpp:313:14:313:27 | new[] | semmle.label | new[] |
+| test.cpp:314:15:314:23 | ... + ... | semmle.label | ... + ... |
+| test.cpp:314:15:314:23 | ... + ... | semmle.label | ... + ... |
+| test.cpp:319:5:319:21 | ... = ... | semmle.label | ... = ... |
+| test.cpp:325:14:325:27 | new[] | semmle.label | new[] |
+| test.cpp:326:15:326:23 | ... + ... | semmle.label | ... + ... |
+| test.cpp:326:15:326:23 | ... + ... | semmle.label | ... + ... |
+| test.cpp:333:5:333:21 | ... = ... | semmle.label | ... = ... |
+| test.cpp:341:5:341:21 | ... = ... | semmle.label | ... = ... |
+| test.cpp:342:5:342:21 | ... = ... | semmle.label | ... = ... |
 | test.cpp:355:14:355:27 | new[] | semmle.label | new[] |
 | test.cpp:356:15:356:23 | ... + ... | semmle.label | ... + ... |
 | test.cpp:356:15:356:23 | ... + ... | semmle.label | ... + ... |
@@ -340,6 +364,10 @@ subpaths
 | test.cpp:254:9:254:16 | ... = ... | test.cpp:248:24:248:30 | call to realloc | test.cpp:254:9:254:16 | ... = ... | This write might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:248:24:248:30 | call to realloc | call to realloc | test.cpp:254:11:254:11 | i | i |
 | test.cpp:264:13:264:14 | * ... | test.cpp:260:13:260:24 | new[] | test.cpp:264:13:264:14 | * ... | This read might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:260:13:260:24 | new[] | new[] | test.cpp:261:19:261:21 | len | len |
 | test.cpp:274:5:274:10 | ... = ... | test.cpp:270:13:270:24 | new[] | test.cpp:274:5:274:10 | ... = ... | This write might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:270:13:270:24 | new[] | new[] | test.cpp:271:19:271:21 | len | len |
+| test.cpp:319:5:319:21 | ... = ... | test.cpp:313:14:313:27 | new[] | test.cpp:319:5:319:21 | ... = ... | This write might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:313:14:313:27 | new[] | new[] | test.cpp:314:20:314:23 | size | size |
+| test.cpp:333:5:333:21 | ... = ... | test.cpp:325:14:325:27 | new[] | test.cpp:333:5:333:21 | ... = ... | This write might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:325:14:325:27 | new[] | new[] | test.cpp:326:20:326:23 | size | size |
+| test.cpp:341:5:341:21 | ... = ... | test.cpp:325:14:325:27 | new[] | test.cpp:341:5:341:21 | ... = ... | This write might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:325:14:325:27 | new[] | new[] | test.cpp:326:20:326:23 | size | size |
+| test.cpp:342:5:342:21 | ... = ... | test.cpp:325:14:325:27 | new[] | test.cpp:342:5:342:21 | ... = ... | This write might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:325:14:325:27 | new[] | new[] | test.cpp:326:20:326:23 | size | size |
 | test.cpp:358:14:358:26 | * ... | test.cpp:355:14:355:27 | new[] | test.cpp:358:14:358:26 | * ... | This read might be out of bounds, as the pointer might be equal to $@ + $@ + 1. | test.cpp:355:14:355:27 | new[] | new[] | test.cpp:356:20:356:23 | size | size |
 | test.cpp:359:14:359:32 | * ... | test.cpp:355:14:355:27 | new[] | test.cpp:359:14:359:32 | * ... | This read might be out of bounds, as the pointer might be equal to $@ + $@ + 2. | test.cpp:355:14:355:27 | new[] | new[] | test.cpp:356:20:356:23 | size | size |
 | test.cpp:384:13:384:16 | * ... | test.cpp:377:14:377:27 | new[] | test.cpp:384:13:384:16 | * ... | This read might be out of bounds, as the pointer might be equal to $@ + $@. | test.cpp:377:14:377:27 | new[] | new[] | test.cpp:378:20:378:23 | size | size |
